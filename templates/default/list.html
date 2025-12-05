@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投票主題列表</title>
+</head>
+<body>
+    <h1>投票主題列表</h1>
+    <ul>
+        {% for polll in polll_list %}
+        <li>{{polll.created}} {{polll.subject}}</li>
+        {% endfor %}
+    </ul>
+
+
+</body>
+</html>
