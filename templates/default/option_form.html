@@ -1,9 +1,9 @@
-{% extends "base.html" %}
+{%extends "base.html" %}
 
-{% block title %}投票主題列表{% endblock %}
+{% block title %}新增投票主題{% endblock %}
 
 {% block main %}
-    <h1>投票主題列表-Listview</h1>
+ <h1>投票主題列表-Listview</h1>
     <a href="{% url 'poll_create'  %}">新增投票主題</a>
     
     <ul>
@@ -14,4 +14,4 @@
         </li>
         {% endfor %}
     </ul>
-    {% endblock %}
+{% endblock %}
