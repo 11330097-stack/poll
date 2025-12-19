@@ -62,7 +62,7 @@ class OptionEdit(UpdateView):
     pk_url_kwarg = 'oid'
 
     def get_success_url(self):
-        return reverse_lazy('poll_view',kwargs={'pk': self.object.id})
+        return reverse_lazy('poll_view',kwargs={'pk': self.object.poll_id})
         #self.object 代表的是目前在操作的那筆紀錄
 class PollDelete(DeleteView):
     model = polll
@@ -71,5 +71,5 @@ class OptionDelete(DeleteView):
     model = Option
 
     def get_success_url(self):
-        return reverse_lazy('poll_view',kwargs={'pk': self.object.id})
+        return reverse_lazy('poll_view',kwargs={'pk': self.object.poll_id})
 
