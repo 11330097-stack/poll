@@ -1,6 +1,6 @@
 from django.shortcuts import render 
 from .models import polll, Option 
-from django.views.generic import ListView ,DetailView, RedirectView, CreateView, UpdateView
+from django.views.generic import ListView ,DetailView, RedirectView, CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
 # Create your views here.
 def polll_list(req):
@@ -55,3 +55,21 @@ class OptionCreate(CreateView):
         
     def get_success_url(self):
         return reverse_lazy('poll_view',kwargs={'pk': self.kwargs['pid']})
+
+class OptionEdit(UpdateView):
+    model =Option
+    fields ={'title'}
+    pk_url_kwarg = 'oid'
+
+    def get_success_url(self):
+        return reverse_lazy('poll_view',kwargs={'pk': self.object.id})
+        #self.object 代表的是目前在操作的那筆紀錄
+class PollDelete(DeleteView):
+    model = polll
+    success_url = reverse_lazy('poll_list')
+class OptionDelete(DeleteView):
+    model = Option
+
+    def get_success_url(self):
+        return reverse_lazy('poll_view',kwargs={'pk': self.object.id})
+

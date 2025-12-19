@@ -11,6 +11,7 @@
         <li>{{polll.created}}
             <a href="{% url 'poll_view' polll.id %}"> {{polll.subject}}</a> 
             <a href="{% url 'poll_edit' polll.id %}"> 修改</a>
+            <a href="{% url 'poll_delete' polll.id %}">刪除投票主題</a>
         </li>
         {% endfor %}
     </ul>
