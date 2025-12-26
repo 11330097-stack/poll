@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import polll, Option 
 from django.views.generic import ListView ,DetailView, RedirectView, CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 def polll_list(req):
     pollls = polll.objects.all()
@@ -33,18 +34,18 @@ class PollVote(RedirectView):
         #return "/poll/{}/".format(option.poll_id)
         #return f"/poll/{option.poll_id}"
         
-class PollCreate(CreateView):
+class PollCreate(LoginRequiredMixin,CreateView):
     model = polll
     fields = '__all__' #['subject', 'desc']
     success_url = reverse_lazy('poll_list')
-class PollEdit(UpdateView):
+class PollEdit(LoginRequiredMixin,UpdateView):
     model = polll
     fields = '__all__' #['subject', 'desc']
 
     def get_success_url(self):
         return reverse_lazy('poll_view', kwargs={'pk': self.object.id})#去的路徑不固定
 
-class OptionCreate(CreateView):
+class OptionCreate(LoginRequiredMixin,CreateView):
     model = Option
     fields ={'title'}
 
@@ -56,7 +57,7 @@ class OptionCreate(CreateView):
     def get_success_url(self):
         return reverse_lazy('poll_view',kwargs={'pk': self.kwargs['pid']})
 
-class OptionEdit(UpdateView):
+class OptionEdit(LoginRequiredMixin,UpdateView):
     model =Option
     fields ={'title'}
     pk_url_kwarg = 'oid'
@@ -64,10 +65,10 @@ class OptionEdit(UpdateView):
     def get_success_url(self):
         return reverse_lazy('poll_view',kwargs={'pk': self.object.poll_id})
         #self.object 代表的是目前在操作的那筆紀錄
-class PollDelete(DeleteView):
+class PollDelete(LoginRequiredMixin,DeleteView):
     model = polll
     success_url = reverse_lazy('poll_list')
-class OptionDelete(DeleteView):
+class OptionDelete(LoginRequiredMixin,DeleteView):
     model = Option
 
     def get_success_url(self):

@@ -124,3 +124,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL ="poll_list" #登入後要去的地方
 LOGOUT_REDIRECT_URL ='poll_list' #登出後要去哪
+LOGIN_URL = 'login' #登入的畫面

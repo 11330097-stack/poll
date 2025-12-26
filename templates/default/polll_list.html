@@ -4,14 +4,17 @@
 
 {% block main %}
     <h1>投票主題列表-Listview</h1>
+    {% if user.is_authenticated %}
     <a href="{% url 'poll_create'  %}">新增投票主題</a>
-    
+    {% endif %}
     <ul>
         {% for polll in polll_list %}
         <li>{{polll.created}}
             <a href="{% url 'poll_view' polll.id %}"> {{polll.subject}}</a> 
+            {% if user.is_authenticated %}
             <a href="{% url 'poll_edit' polll.id %}"> 修改</a>
             <a href="{% url 'poll_delete' polll.id %}">刪除投票主題</a>
+             {% endif %}
         </li>
         {% endfor %}
     </ul>
