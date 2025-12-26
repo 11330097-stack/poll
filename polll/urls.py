@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, reverse_lazy
 from django.views.generic import RedirectView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("poll/", include ("default.urls")),
-    path('',RedirectView.as_view(url=reverse_lazy('poll_list')) )
+    path('account/',include("django.contrib.auth.urls")),
+    path('',RedirectView.as_view(url=reverse_lazy('poll_list'))),
 ]

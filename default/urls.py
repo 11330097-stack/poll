@@ -12,5 +12,6 @@ urlpatterns=[
     path("<int:oid>/modify", OptionEdit.as_view(),name="option_edit"),
     path("<int:pk>/delete", PollDelete.as_view(), name="poll_delete"),
     path("<int:pk>/remove", OptionDelete.as_view(),name="option_delete")
+    
 ]
 
